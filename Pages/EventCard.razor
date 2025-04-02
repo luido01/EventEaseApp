@@ -1,0 +1,18 @@
+@using EventEaseApp.Models
+@code {
+    [Parameter]
+    public Event EventData { get; set; }
+
+    @inject NavigationManager Navigation
+
+    private void GoToEventDetail()
+    {
+        Navigation.NavigateTo($"/event-details/{EventData.Id}");
+    }
+}
+
+<div class="event-card" @onclick="GoToEventDetail">
+    <h3>@EventData.Name</h3>
+    <p><strong>Date:</strong> @EventData.Date.ToString("MMMM dd, yyyy")</p>
+    <p><strong>Location:</strong> @EventData.Location</p>
+</div>

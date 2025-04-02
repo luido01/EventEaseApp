@@ -1,0 +1,43 @@
+@page "/add-event"
+
+@using EventEaseApp.Models
+@using EventEaseApp.Services
+@inject EventService EventService 
+@inject NavigationManager NavigationManager
+
+<h3>Add New Event</h3>
+
+<EditForm Model="newEvent" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label for="name">Event Name</label>
+        <InputText id="name" class="form-control" @bind-Value="newEvent.Name" />
+    </div>
+
+    <div class="form-group">
+        <label for="date">Event Date</label>
+        <InputDate id="date" class="form-control" @bind-Value="newEvent.Date" />
+    </div>
+
+    <div class="form-group">
+        <label for="location">Event Location</label>
+        <InputText id="location" class="form-control" @bind-Value="newEvent.Location" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add Event</button>
+</EditForm>
+
+@code {
+    private Event newEvent = new Event(); // Declare event object
+
+    private void HandleValidSubmit()
+    {
+        newEvent.Id = Guid.NewGuid().ToString(); // Generate a unique ID for the event
+        EventService.AddEvent(newEvent); // Add the event to the list
+
+        // Redirect to the event list page
+        NavigationManager.NavigateTo("/");
+    }
+}

@@ -1,0 +1,22 @@
+﻿@page "/"
+
+@using EventEaseApp.Models
+@using EventEaseApp.Services
+
+<h1>Upcoming Events</h1>
+
+@foreach (var eventItem in eventList)
+{
+    <EventCard EventData="eventItem" />
+}
+
+@code {
+    private List<Event> eventList;
+
+    [Inject] private EventService EventService { get; set; }
+
+    protected override void OnInitialized()
+    {
+        eventList = EventService.GetAllEvents(); // Get the list of events from the service
+    }
+}

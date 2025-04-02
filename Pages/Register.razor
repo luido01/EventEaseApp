@@ -1,0 +1,66 @@
+@page "/event/{eventId}/register"
+@using EventEaseApp.Models
+@using EventEaseApp.Services
+@inject EventService EventService
+
+<h3>Register for Event</h3>
+
+@if (string.IsNullOrEmpty(eventId))
+{
+    <p>Invalid Event ID.</p>
+}
+else
+{
+    <p>You're registering for the event: <strong>@eventId</strong></p>
+
+    <EditForm Model="@attendee" OnValidSubmit="HandleRegistration">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div>
+            <label for="name">Full Name:</label>
+            <InputText id="name" class="form-control" @bind-Value="attendee.FullName" required />
+        </div>
+
+        <div>
+            <label for="email">Email:</label>
+            <InputText id="email" type="email" class="form-control" @bind-Value="attendee.Email" required />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </EditForm>
+
+    <button @onclick="ShowAttendees" class="btn btn-secondary mt-3">Show Attendees</button>
+
+    @if (showAttendees)
+    {
+        <h4>Attendees:</h4>
+        <ul>
+            @foreach (var person in attendees)
+            {
+                <li>@person.FullName - @person.Email</li>
+            }
+        </ul>
+    }
+}
+
+@code {
+    [Parameter]
+    public string eventId { get; set; }
+
+    private Attendee attendee = new Attendee();
+    private List<Attendee> attendees = new();
+    private bool showAttendees = false;
+
+    private void HandleRegistration()
+    {
+        EventService.RegisterAttendee(eventId, attendee);
+        attendee = new Attendee(); // Reset form
+    }
+
+    private void ShowAttendees()
+    {
+        attendees = EventService.GetAttendees(eventId);
+        showAttendees = true;
+    }
+}
