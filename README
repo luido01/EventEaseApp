@@ -1,0 +1,36 @@
+1. Creating the Event Card Component
+Copilot Assisted: Copilot helped generate the initial structure for the Event Card component, suggesting the necessary HTML and Blazor syntax to display event details (name, date, and location).
+
+Example: It provided code for displaying dynamic data within the <h3> and <p> tags and helped structure the component’s layout.
+
+2. Adding Data Binding
+Copilot Assisted: Copilot suggested the use of data binding (@EventData.Property) to dynamically display the event information. It provided correct syntax for binding variables and showing dynamic content inside the UI components.
+
+Example: Copilot recommended using parameters and binding the EventData object, ensuring smooth integration of dynamic data in the UI.
+
+3. Implementing Routing Between Pages
+Copilot Assisted: Copilot suggested the necessary Blazor routing paths for navigation. It also generated @onclick handlers for navigation and recommended proper route structure for linking between the event list, details, and registration pages.
+
+Example: It auto-suggested the NavigationManager.NavigateTo() syntax and helped create the path for event details.
+
+4. Creating the Add Event Page
+Copilot Assisted: Copilot proposed methods for creating the form to add events, suggesting input fields for the event’s name, date, and location. It also generated the basic structure for event creation, including the form handling logic.
+
+Example: It helped generate code to create an Event object, bind it to form fields, and suggest how to add it to the event list.
+
+5. Implementing Attendee Registration and Display
+Copilot Assisted: Copilot suggested the creation of a registration form for event attendees, generating form fields (name, email) and buttons. It also helped build logic for saving the attendee information in a list.
+
+Example: Copilot auto-suggested the correct handling for storing attendee data and displayed the attendee list.
+
+6. Handling Routing for Event Registration
+Copilot Assisted: It helped with setting up dynamic routing for the registration page, using parameters (e.g., eventId) to link to specific event details and registration.
+
+Example: Copilot suggested using NavigationManager for redirection and helped bind the eventId parameter in the route.
+
+7. Assisting with Error Handling and Code Corrections
+Copilot Assisted: Copilot assisted with troubleshooting by suggesting fixes for missing namespaces, incorrectly referenced classes (e.g., Attendee), and namespace mismatches. It helped ensure that the right namespaces were imported and offered suggestions when encountering errors.
+
+8. Managing Git and Git Ignore
+Copilot Assisted: Copilot recommended essential entries for the .gitignore file to exclude unnecessary build files, dependencies, and IDE-specific files from being tracked in the repository.
+
